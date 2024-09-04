@@ -5,8 +5,9 @@
 ![terraform](https://img.shields.io/badge/Terraform-30%25-844FBA?logo=terraform)
 ![docker](https://img.shields.io/badge/Docker-30%25-2496ED?logo=docker)
 ![ansible](https://img.shields.io/badge/Ansible-10%25-EE0000?logo=ansible)
+![grafana](https://img.shields.io/badge/Grafana-10%25-D24938?logo=grafana)
 
-Quick Test environment for using Jenkins pipeline and installing with Terraform
+Quick Test environment for using Jenkins pipelines, Grafana monitoring, Sonarqube for testing. Installation with Terraform
 
 ## Installation requirements :
 
@@ -100,6 +101,8 @@ http://172.216.0.5:9000
 <img src="./assets/img/sonar-s2.jpg" alt="screen9" width="700px" />
 
 ### Installing Grafana, the monitoring tool !
+
+
 
 
 

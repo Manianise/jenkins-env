@@ -16,27 +16,14 @@ variable "networks" {
   default = ["network1", "network2"]
 }
 
-variable "postgres_user" {
-  description = "The username for the PostgreSQL database"
+variable "grafana_version" {
+  description = "The version of Grafana to use"
   type        = string
-  default     = "default_user"
-}
-
-variable "postgres_password" {
-  description = "The password for the PostgreSQL database"
-  type        = string
-  default     = "default_password"
-  sensitive   = true
-}
-
-variable "postgres_db" {
-  description = "The name of the PostgreSQL database"
-  type        = string
-  default     = "default_db"
+  default     = "latest"
 }
 
 variable "postgres_version" {
-  description = "The version of PostgreSQL to use"
+  description = "The version of postgres to use"
   type        = string
   default     = "latest"
 }
@@ -53,17 +40,15 @@ variable "nameservers" {
   default = ["8.8.8.8", "8.8.4.4"]
 }
 
-# Related to AWS
 
-variable "private_ips" {
-  description = "List of private IPs for the instances"
-  type        = list(string)
-  default     = ["10.0.1.10", "10.0.1.11"]
+# Variables with secrets
+
+variable "postgres_info" {
+  description = "postgres information"
+  type        = object({
+    user_name = string
+    user_pwd = string
+    db_name = string
+  })
+  sensitive   = true
 }
-
-variable "cluster_name" {
-  description = "EKS Cluster Name"
-  type        = string
-  default     = "my-eks-cluster"
-}
-
