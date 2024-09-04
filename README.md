@@ -7,7 +7,8 @@
 ![ansible](https://img.shields.io/badge/Ansible-10%25-EE0000?logo=ansible)
 ![grafana](https://img.shields.io/badge/Grafana-10%25-D24938?logo=grafana)
 
-Quick Test environment for using Jenkins pipelines, Grafana monitoring, Sonarqube for testing. Installation with Terraform
+Quick Test environment for using Jenkins pipelines, Grafana monitoring, Sonarqube for testing. Installation with Terraform.
+> Gitleaks has also been installed in one container if you wish to check for secrets leaks in your project (usage written further down)
 
 ## Installation requirements :
 
@@ -102,13 +103,25 @@ http://172.216.0.5:9000
 
 ### Installing Grafana, the monitoring tool !
 
+### With Gitleaks, protect your secrets
 
+```
+docker run --name gitleaks_ctn -v ${path_to_host_folder_to_scan}:/path zricethezav/gitleaks:latest [COMMAND] --source="/path" [OPTIONS] && docker rm gitleaks_ctn
+```
+> #### Example use
+>```
+> docker run --name gitleaks_ctn -v ${path_to_host_folder_to_scan}:/path zricethezav/gitleaks:latest <strong>detect</strong> -lv --source="/path" && docker rm gitleaks_ctn
+>```
+>> - This command will detect any secrets leaks in path directory to .git folder
+>> - Every time a command is used a container is created so we delete said container right after using it
 
 
 
 ### Easy to delete instance
 
-- Simply run a Terraform destroy command
+```
+terraform destroy
+```
 
 ## Bare in mind !
 

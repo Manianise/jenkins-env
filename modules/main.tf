@@ -10,7 +10,7 @@ resource "docker_image" "j-agent" {
   name = "mechameleon/node_agent:0.0.5"
 }
 
-# get grafana image
+# Get grafana image
 
 resource "docker_image" "grafana" {
   name = "grafana/grafana:${var.grafana_version}"
@@ -27,6 +27,13 @@ resource "docker_image" "sonarqube" {
 
 resource "docker_image" "postgres" {
   name = "postgres:${var.postgres_version}"
+  keep_locally = false
+}
+
+# Get Gitleaks image
+
+resource "docker_image" "zricethezav/gitleaks" {
+  name = "sonarqube:community"
   keep_locally = false
 }
 
@@ -152,4 +159,6 @@ resource "docker_container" "sonarqube" {
     external = 9000
   }
 }
+
+# Gitleaks container
 
